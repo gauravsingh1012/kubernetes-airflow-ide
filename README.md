@@ -14,17 +14,17 @@ https://mrecco.medium.com/apache-airflow-kubernetes-on-local-how-to-simplify-dev
 
 1) Kubernetes dashboard :: http://127.0.0.1:8008/
 2) In order to get Kube lens to work, I did following:
-    sudo hostnamectl set-hostname kubernetes
-    sudo gedit /etc/hosts --> added 127.0.0.53	kubernetes
-    hostnamectl --for verification
+    a) sudo hostnamectl set-hostname kubernetes
+    b) sudo gedit /etc/hosts --> added 127.0.0.53	kubernetes
+    c) hostnamectl --for verification
 3) In case, Volume and Overlay2 directories of docker gets huge then do folowing (only in dev):
-    docker system df --to check
-    docker volume prune  (for dangling volumes, this will hard reset your meta databases)
-    docker system prune -a  (After executing make start, Only if above do not reduces much)
-    docker system prune -a  (After executing make stop, Only if above do not reduces much) 
+    a) docker system df --to check
+    b) docker volume prune  (for dangling volumes, this will hard reset your meta databases)
+    c) docker system prune -a  (After executing make start, Only if above do not reduces much)
+    d) docker system prune -a  (After executing make stop, Only if above do not reduces much) 
 4) Some other docker maintainence:    
-    docker image prune (In case you want to remove dangling (un tagged) images)
-    docker image prune -a --filter "until=48h" (In acasecse you want to remove old images)
+    a) docker image prune (In case you want to remove dangling (un tagged) images)
+    b) docker image prune -a --filter "until=48h" (In acasecse you want to remove old images)
 
 
 # Apache Airflow IDE
