@@ -11,7 +11,8 @@ containerdConfigPatches:
     endpoint = ["http://10.254.254.253"]
 nodes:
 - role: control-plane
-  image: kindest/node:v1.16.4
+#  image: kindest/node:v1.16.4
+  image: kindest/node:v1.17.0
   extraMounts:
   - hostPath: /mnt/kubernetes
     containerPath: /mnt/kubernetes

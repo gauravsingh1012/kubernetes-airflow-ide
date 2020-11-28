@@ -17,11 +17,13 @@ x-airflow-common: &ref_airflow_common
   - "--"
   environment:
     AIRFLOW__CORE__FERNET_KEY: qykO1whjCf2vZQsfFevdfSf2eegO6ErT9pFqkx3kZdg=
+    PYTHONPATH: /opt/airflow
   volumes:
   - ./dags:/opt/airflow/dags:ro
+  - ./volumes/scripts:/opt/airflow/scripts:rw
   - ./volumes/logs:/opt/airflow/logs:rw
   - ./volumes/config/airflow.cfg:/opt/airflow/airflow.cfg:ro
-  - ./volumes/config/podtemplate.yml:/opt/airflow/podtemplate.yml:ro
+  - ./volumes/config/debug.yml:/opt/airflow/podtemplate.yml:ro
   - ./volumes/kubeconfig:/home/airflow/.kube/config:ro
   stop_grace_period: 1s
 
@@ -35,6 +37,8 @@ services:
       POSTGRES_USER: airflow
     volumes:
     - postgres-airflow:/var/lib/postgresql/data
+    ports:
+    - "5432:5432"
     expose:
     - 5432
     restart: on-failure
@@ -96,6 +100,7 @@ services:
     - "kubernetes:127.0.0.1"
     volumes:
     - ./dags:/mnt/kubernetes/dags:ro
+    - ./volumes/scripts:/mnt/kubernetes/scripts:rw    
     - ./volumes/logs:/mnt/kubernetes/logs:rw
     - ./volumes/kubeconfig:/root/.kube/config:rw
     - ./volumes/config/daemon.json:/etc/docker/daemon.json:ro

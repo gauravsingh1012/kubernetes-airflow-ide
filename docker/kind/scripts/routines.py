@@ -24,6 +24,8 @@ def create():
         "/usr/local/bin/kind",
         "create",
         "cluster",
+        "--image",
+        "kindest/node:v1.17.0",
         "--config",
         __config_file
     ], stdout=sys.stdout, stderr=sys.stderr, universal_newlines=True)

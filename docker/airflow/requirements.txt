@@ -4,6 +4,9 @@ blinker==1.4
 aiocontextvars==0.2.2
 Flask-OAuthlib==0.9.6
 Authlib==0.15.1
+scikit-learn==0.23.2
+xgboost==1.2.1
+yfinance==0.1.54
 apache-airflow[sentry]
 apache-airflow[google_auth]
 sentry-sdk[flask]

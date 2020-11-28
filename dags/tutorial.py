@@ -5,6 +5,7 @@ from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
 from airflow.utils.dates import days_ago
 
+schedule_interval = None
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
@@ -18,7 +19,7 @@ dag = DAG(
     'tutorial',
     default_args=default_args,
     description='A simple tutorial DAG',
-    schedule_interval=timedelta(days=1),
+    schedule_interval=schedule_interval,
 )
 
 # t1, t2 and t3 are examples of tasks created by instantiating operators
